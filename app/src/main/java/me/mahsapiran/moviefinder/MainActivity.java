@@ -2,6 +2,8 @@ package me.mahsapiran.moviefinder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -12,7 +14,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
+    RecyclerView rvNew,rvPopular;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //define recyclers view
+        rvNew=findViewById(R.id.rvNew);
+        rvPopular=findViewById(R.id.rvPopular);
+        //grie view
+
     }
 
     @Override
