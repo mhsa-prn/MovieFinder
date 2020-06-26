@@ -5,8 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <include
-        layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/main"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/text"
+        app:tabIndicatorColor="@color/text"
+        >
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabbar_item_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabbar_item_popular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Popular" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_below="@+id/tabbar"
+        android:id="@+id/viewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
