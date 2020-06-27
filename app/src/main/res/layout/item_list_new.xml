@@ -24,32 +24,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:layout_marginLeft="10dp"
                 style="@style/movieTitle"
                 android:id="@+id/tvMovieTitleNew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="title" />
+
             <TextView
+                android:id="@+id/tvMovieScoreNew"
                 style="@style/movieSubTitle"
-                android:layout_marginTop="35dp"
-                android:id="@+id/tvMovieGenreNew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="genre" />
-            <TextView
-                style="@style/movieSubTitle"
-                android:id="@+id/tvMovieDirectorNew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="director" />
+                android:layout_marginLeft="10dp"
+
+                android:text="100%" />
         </LinearLayout>
-        <TextView
-            android:layout_marginLeft="220dp"
-            style="@style/movieSubTitle"
-            android:id="@+id/tvMovieScoreNew"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="100%" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

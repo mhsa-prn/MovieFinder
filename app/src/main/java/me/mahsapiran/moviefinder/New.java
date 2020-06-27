@@ -6,7 +6,7 @@ public class New {
     public New(String title, String popularity, String poster_path) {
         this.mTitleNew=title;
         this.mPopularityNew=popularity;
-        this.mPosterPath=poster_path;
+        this.mPosterPath="https://image.tmdb.org/t/p/w500"+poster_path;
     }
 
     public String getmTitleNew() {

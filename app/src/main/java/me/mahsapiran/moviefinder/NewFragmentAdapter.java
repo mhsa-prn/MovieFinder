@@ -9,11 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class NewFragmentAdapter extends RecyclerView.Adapter<NewFragmentAdapter.ViewHolder> {
-
+    NewFragment newFragment=new NewFragment();
     ArrayList<New> newMovies;
+
 
     public NewFragmentAdapter(ArrayList<New> newMovies){
         this.newMovies=newMovies;
@@ -32,7 +35,8 @@ public class NewFragmentAdapter extends RecyclerView.Adapter<NewFragmentAdapter.
         New newF=newMovies.get(position);
         holder.tvMovieTitleNew.setText(newF.getmTitleNew());
         holder.tvMovieScoreNew.setText(newF.getmPopularityNew());
-        //holder.ivMovieNew.setImageURI(newF.getmPosterPath());
+        Glide.with(holder.ivMovieNew).load(newF.getmPosterPath()).into(holder.ivMovieNew);
+
         //holder.ivMovieNew.setImageResource(newFragment.imageNew);
     }
 
@@ -43,15 +47,13 @@ public class NewFragmentAdapter extends RecyclerView.Adapter<NewFragmentAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvMovieTitleNew,tvMovieDirectorNew,tvMovieGenreNew,tvMovieScoreNew;
+        TextView tvMovieTitleNew,tvMovieScoreNew;
         ImageView ivMovieNew;
 
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
             tvMovieTitleNew=itemView.findViewById(R.id.tvMovieTitleNew);
-            tvMovieGenreNew=itemView.findViewById(R.id.tvMovieGenreNew);
-            tvMovieDirectorNew=itemView.findViewById(R.id.tvMovieDirectorNew);
             tvMovieScoreNew=itemView.findViewById(R.id.tvMovieScoreNew);
             ivMovieNew=itemView.findViewById(R.id.ivMovieNew);
         }

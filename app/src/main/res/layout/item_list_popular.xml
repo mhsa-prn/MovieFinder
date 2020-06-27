@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMoviePopular"
             android:layout_width="70dp"
             android:layout_height="100dp"/>
 
@@ -23,32 +24,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:layout_marginLeft="10dp"
                 style="@style/movieTitle"
                 android:id="@+id/tvMovieTitlePopular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="title" />
             <TextView
+                android:layout_marginLeft="10dp"
                 style="@style/movieSubTitle"
-                android:layout_marginTop="35dp"
-                android:id="@+id/tvMovieGenrePopular"
+                android:id="@+id/tvMovieScorePopular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="genre" />
-            <TextView
-                style="@style/movieSubTitle"
-                android:id="@+id/tvMovieDirectorPopular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="director" />
+                android:text="100%" />
         </LinearLayout>
-        <TextView
-            android:layout_marginLeft="220dp"
-            style="@style/movieSubTitle"
-            android:id="@+id/tvMovieScorePopular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="100%" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

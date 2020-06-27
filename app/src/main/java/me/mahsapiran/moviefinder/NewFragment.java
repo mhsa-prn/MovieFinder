@@ -2,6 +2,7 @@ package me.mahsapiran.moviefinder;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,8 +39,8 @@ public class NewFragment extends Fragment {
     private static final String TAG=NewFragment.class.getSimpleName();
     ArrayList<New> newMovies;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root= inflater.inflate(R.layout.fragment_new, container, false);
@@ -78,6 +79,7 @@ public class NewFragment extends Fragment {
                                     "popularity"), data.getString("poster_path")
                             ));
                         }
+                        showRecyclerView();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -92,6 +94,8 @@ public class NewFragment extends Fragment {
                     }
                 });
         Volley.newRequestQueue(getActivity()).add(stringRequest);
+
+
     }
 
 
