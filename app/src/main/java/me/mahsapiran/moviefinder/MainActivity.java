@@ -9,16 +9,30 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView rvNew,rvPopular;
+    ImageView ivMovieNew;
+    TextView tvMovieTitleNew,tvMovieGenreNew,tvMovieDirectorNew,tvMovieScoreNew;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //define texts views
+        tvMovieTitleNew=findViewById(R.id.tvMovieTitleNew);
+        tvMovieGenreNew=findViewById(R.id.tvMovieGenreNew);
+        tvMovieDirectorNew=findViewById(R.id.tvMovieDirectorNew);
+        tvMovieScoreNew=findViewById(R.id.tvMovieScoreNew);
+
+        //define images view
+        ivMovieNew=findViewById(R.id.ivMovieNew);
+
 
         //define toolbar
         Toolbar toolbar=findViewById(R.id.toolbar);
@@ -61,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         //define recyclers view
         rvNew=findViewById(R.id.rvNew);
         rvPopular=findViewById(R.id.rvPopular);
-        //grie view
+
 
     }
 
