@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -52,7 +53,7 @@ public class NewFragment extends Fragment {
 
         //define views
         progressBar=root.findViewById(R.id.pbNew);
-        rvNew=root.findViewById(R.id.rvNew);
+        rvNew=(RecyclerView) root.findViewById(R.id.rvNew);
         rvNew.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //call volley method
@@ -62,14 +63,11 @@ public class NewFragment extends Fragment {
         return root;
     }
 
-    private void showRecyclerView(){
-        NewFragmentAdapter newFragmentAdapter=new NewFragmentAdapter(newMovies);
+    public void showRecyclerView(){
 
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        rvNew.setLayoutManager(manager);
-        rvNew.setHasFixedSize(true);
-
-       // rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
+        NewFragmentAdapter newFragmentAdapter=new NewFragmentAdapter(newMovies,getContext());
+        LinearLayoutManager llm=new LinearLayoutManager(getActivity());
+        rvNew.setLayoutManager(llm);
         rvNew.setAdapter(newFragmentAdapter);
 
     }
@@ -90,6 +88,7 @@ public class NewFragment extends Fragment {
                             newMovies.add(new New(data.getString("title"), data.getString(
                                     "popularity"), data.getString("poster_path")
                             ));
+
                         }
                         showRecyclerView();
                     } catch (JSONException e) {
@@ -110,12 +109,12 @@ public class NewFragment extends Fragment {
 
     }
 
-    public void tvNewClicked (View view){
+    /*public void tvNewClicked (View view){
         MainActivity mainActivity=new MainActivity();
         //Main2Activity main2Activity=new Main2Activity();
         //TextView textView=(TextView)view;
         Intent intent=new Intent(mainActivity,Main2Activity.class);
-    }
+    }*/
 
 
 

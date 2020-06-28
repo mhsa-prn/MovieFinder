@@ -18,7 +18,6 @@
         tools:listitem="@layout/item_list_new"
         android:scrollbars="vertical">
 
-
     </androidx.recyclerview.widget.RecyclerView>
 
 

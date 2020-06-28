@@ -1,5 +1,6 @@
 package me.mahsapiran.moviefinder;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +15,23 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class NewFragmentAdapter extends RecyclerView.Adapter<NewFragmentAdapter.ViewHolder> {
-    NewFragment newFragment=new NewFragment();
-    ArrayList<New> newMovies;
+
+    private ArrayList<New> newMovies;
+
+    private Context context;
 
 
-    public NewFragmentAdapter(ArrayList<New> newMovies){
+    public NewFragmentAdapter(ArrayList<New> newMovies,Context context){
         this.newMovies=newMovies;
-
+        this.context=context;
     }
     @NonNull
     @Override
     public NewFragmentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_new,parent,false);
-        return new ViewHolder(view);
+
+        ViewHolder viewHolder=new ViewHolder(view);
+        return viewHolder;
     }
 
     @Override
@@ -37,7 +42,6 @@ public class NewFragmentAdapter extends RecyclerView.Adapter<NewFragmentAdapter.
         holder.tvMovieScoreNew.setText(newF.getmPopularityNew());
         Glide.with(holder.ivMovieNew).load(newF.getmPosterPath()).into(holder.ivMovieNew);
 
-        //holder.ivMovieNew.setImageResource(newFragment.imageNew);
     }
 
     @Override
@@ -53,9 +57,9 @@ public class NewFragmentAdapter extends RecyclerView.Adapter<NewFragmentAdapter.
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
-            tvMovieTitleNew=itemView.findViewById(R.id.tvMovieTitleNew);
-            tvMovieScoreNew=itemView.findViewById(R.id.tvMovieScoreNew);
-            ivMovieNew=itemView.findViewById(R.id.ivMovieNew);
+            tvMovieTitleNew=(TextView) itemView.findViewById(R.id.tvMovieTitleNew);
+            tvMovieScoreNew=(TextView) itemView.findViewById(R.id.tvMovieScoreNew);
+            ivMovieNew=(ImageView) itemView.findViewById(R.id.ivMovieNew);
         }
     }
 }

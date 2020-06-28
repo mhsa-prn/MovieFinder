@@ -41,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(pagerAdapter);
 
+
+
+
+
+
+
+
         //change the tabs view when the tab is selected or clicked
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
