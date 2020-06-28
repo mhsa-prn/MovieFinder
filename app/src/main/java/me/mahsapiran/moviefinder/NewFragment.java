@@ -1,8 +1,10 @@
 package me.mahsapiran.moviefinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,6 +42,7 @@ public class NewFragment extends Fragment {
     private RecyclerView rvNew;
     private static final String TAG=NewFragment.class.getSimpleName();
     ArrayList<New> newMovies;
+    //private Object Main2Activity;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -59,7 +64,14 @@ public class NewFragment extends Fragment {
 
     private void showRecyclerView(){
         NewFragmentAdapter newFragmentAdapter=new NewFragmentAdapter(newMovies);
+
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        rvNew.setLayoutManager(manager);
+        rvNew.setHasFixedSize(true);
+
+       // rvNew.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false));
         rvNew.setAdapter(newFragmentAdapter);
+
     }
 
     private void getDataFromServer() {
@@ -98,6 +110,12 @@ public class NewFragment extends Fragment {
 
     }
 
+    public void tvNewClicked (View view){
+        MainActivity mainActivity=new MainActivity();
+        //Main2Activity main2Activity=new Main2Activity();
+        //TextView textView=(TextView)view;
+        Intent intent=new Intent(mainActivity,Main2Activity.class);
+    }
 
 
 

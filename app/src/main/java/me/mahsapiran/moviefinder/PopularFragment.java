@@ -1,5 +1,6 @@
 package me.mahsapiran.moviefinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -95,7 +96,12 @@ public class PopularFragment extends Fragment {
 
     }
 
-
+    public void tvPopularClicked (View view){
+        MainActivity mainActivity=new MainActivity();
+        //Main2Activity main2Activity=new Main2Activity();
+        //TextView textView=(TextView)view;
+        Intent intent=new Intent(mainActivity,Main2Activity.class);
+    }
 
 
 }

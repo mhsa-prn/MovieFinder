@@ -6,22 +6,30 @@
     android:background="@color/main"
     tools:context=".NewFragment">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNew"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         tools:listitem="@layout/item_list_new"
         android:scrollbars="vertical">
+
+
     </androidx.recyclerview.widget.RecyclerView>
 
+
+
+
+    </LinearLayout>
     <ProgressBar
         android:id="@+id/pbNew"
         android:indeterminate="true"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
-
-
 
 </RelativeLayout>

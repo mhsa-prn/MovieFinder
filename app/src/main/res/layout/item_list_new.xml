@@ -9,6 +9,7 @@
     android:padding="10dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -29,7 +30,8 @@
                 android:id="@+id/tvMovieTitleNew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="title" />
+                android:text="title"
+                android:onClick="tvNewClicked"/>
 
             <TextView
                 android:id="@+id/tvMovieScoreNew"

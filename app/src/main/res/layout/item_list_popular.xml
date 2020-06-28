@@ -29,7 +29,8 @@
                 android:id="@+id/tvMovieTitlePopular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="title" />
+                android:text="title"
+                android:onClick="tvPopularClicked"/>
             <TextView
                 android:layout_marginLeft="10dp"
                 style="@style/movieSubTitle"
