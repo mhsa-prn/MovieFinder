@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 public class PopularFragment extends Fragment {
     private ProgressBar progressBar;
     private RecyclerView rvPopular;
+    private RequestQueue requestQueue;
     private static final String TAG=NewFragment.class.getSimpleName();
     ArrayList<Popular> popularMovies;
 
@@ -44,6 +46,7 @@ public class PopularFragment extends Fragment {
         View root= inflater.inflate(R.layout.fragment_popular, container, false);
 
         //define views
+        requestQueue = Volley.newRequestQueue(getActivity());
         progressBar=root.findViewById(R.id.pbPopular);
         rvPopular=root.findViewById(R.id.rvPopular);
         rvPopular.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -63,19 +66,24 @@ public class PopularFragment extends Fragment {
     private void getDataFromServer() {
         String url="https://api.themoviedb.org/3/movie/popular?api_key=0d43c16b0f65f3f26136a48b3b831525";
         popularMovies=new ArrayList<>();
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                progressBar.setVisibility(View.GONE);
+            public void onResponse(JSONObject response) {
+
                 if (response != null) {
+                    progressBar.setVisibility(View.GONE);
                     Log.e(TAG, "On Response: " + response);
                     try {
-                        JSONArray jsonArray = new JSONArray(response);
+                        JSONArray jsonArray = response.getJSONArray("results");
                         for (int i = 0; i < jsonArray.length(); i++) {
+                            try {
                             JSONObject data = jsonArray.getJSONObject(i);
                             popularMovies.add(new Popular(data.getString("title"), data.getString(
                                     "popularity"), data.getString("poster_path")
                             ));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                         showRecyclerView();
                     } catch (JSONException e) {
@@ -87,21 +95,16 @@ public class PopularFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressBar.setVisibility(View.GONE);
+
                         Log.e(TAG,"On Response: "+error);
                     }
                 });
-        Volley.newRequestQueue(getActivity()).add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
 
 
     }
 
-    public void tvPopularClicked (View view){
-        MainActivity mainActivity=new MainActivity();
-        //Main2Activity main2Activity=new Main2Activity();
-        //TextView textView=(TextView)view;
-        Intent intent=new Intent(mainActivity,Main2Activity.class);
-    }
+
 
 
 }

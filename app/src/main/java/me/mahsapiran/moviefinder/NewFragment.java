@@ -22,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -41,9 +42,10 @@ public class NewFragment extends Fragment {
 
     private ProgressBar progressBar;
     private RecyclerView rvNew;
+    private RequestQueue requestQueue;
     private static final String TAG=NewFragment.class.getSimpleName();
     ArrayList<New> newMovies;
-    //private Object Main2Activity;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -52,6 +54,7 @@ public class NewFragment extends Fragment {
         View root= inflater.inflate(R.layout.fragment_new, container, false);
 
         //define views
+        requestQueue = Volley.newRequestQueue(getActivity());
         progressBar=root.findViewById(R.id.pbNew);
         rvNew=(RecyclerView) root.findViewById(R.id.rvNew);
         rvNew.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -66,8 +69,6 @@ public class NewFragment extends Fragment {
     public void showRecyclerView(){
 
         NewFragmentAdapter newFragmentAdapter=new NewFragmentAdapter(newMovies,getContext());
-        LinearLayoutManager llm=new LinearLayoutManager(getActivity());
-        rvNew.setLayoutManager(llm);
         rvNew.setAdapter(newFragmentAdapter);
 
     }
@@ -75,19 +76,23 @@ public class NewFragment extends Fragment {
     private void getDataFromServer() {
         String url="https://api.themoviedb.org/3/movie/now_playing?api_key=0d43c16b0f65f3f26136a48b3b831525";
         newMovies=new ArrayList<>();
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 progressBar.setVisibility(View.GONE);
                 if (response != null) {
                     Log.e(TAG, "On Response: " + response);
                     try {
-                        JSONArray jsonArray = new JSONArray(response);
+                        JSONArray jsonArray = response.getJSONArray("results");
                         for (int i = 0; i < jsonArray.length(); i++) {
+                            try {
                             JSONObject data = jsonArray.getJSONObject(i);
                             newMovies.add(new New(data.getString("title"), data.getString(
                                     "popularity"), data.getString("poster_path")
                             ));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
                         }
                         showRecyclerView();
@@ -100,14 +105,14 @@ public class NewFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressBar.setVisibility(View.GONE);
+
                         Log.e(TAG,"On Response: "+error);
                     }
                 });
-        Volley.newRequestQueue(getActivity()).add(stringRequest);
-
+        requestQueue.add(jsonObjectRequest);
 
     }
+
 
     /*public void tvNewClicked (View view){
         MainActivity mainActivity=new MainActivity();
