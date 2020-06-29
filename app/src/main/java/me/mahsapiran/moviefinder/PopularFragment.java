@@ -59,7 +59,7 @@ public class PopularFragment extends Fragment {
     }
 
     private void showRecyclerView(){
-        PopularFragmentAdapter popularFragmentAdapter=new PopularFragmentAdapter(popularMovies);
+        PopularFragmentAdapter popularFragmentAdapter=new PopularFragmentAdapter(popularMovies,getActivity());
         rvPopular.setAdapter(popularFragmentAdapter);
     }
 
@@ -79,7 +79,7 @@ public class PopularFragment extends Fragment {
                             try {
                             JSONObject data = jsonArray.getJSONObject(i);
                             popularMovies.add(new Popular(data.getString("title"), data.getString(
-                                    "popularity"), data.getString("poster_path")
+                                    "popularity"), data.getString("poster_path"),data.getString("overview")
                             ));
                             } catch (JSONException e) {
                                 e.printStackTrace();

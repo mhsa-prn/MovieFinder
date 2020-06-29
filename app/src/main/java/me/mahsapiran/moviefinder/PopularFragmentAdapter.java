@@ -1,4 +1,6 @@
 package me.mahsapiran.moviefinder;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,12 @@ import java.util.ArrayList;
 public class PopularFragmentAdapter extends RecyclerView.Adapter<PopularFragmentAdapter.ViewHolder> {
     PopularFragment popularFragment=new PopularFragment();
     ArrayList<Popular> popularMovies;
+    Context context;
 
 
-    public PopularFragmentAdapter(ArrayList<Popular> popularMovies){
+    public PopularFragmentAdapter(ArrayList<Popular> popularMovies, Context context){
         this.popularMovies=popularMovies;
-
+        this.context=context;
     }
 
     @NonNull
@@ -52,6 +55,20 @@ public class PopularFragmentAdapter extends RecyclerView.Adapter<PopularFragment
             tvMovieTitlePopular=itemView.findViewById(R.id.tvMovieTitlePopular);
             tvMovieScorePopular=itemView.findViewById(R.id.tvMovieScorePopular);
             ivMoviePopular=itemView.findViewById(R.id.ivMoviePopular);
+
+            ivMoviePopular.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context,Main2Activity.class);
+
+                    Popular popularF=popularMovies.get(getAdapterPosition());
+                    intent.putExtra("title",popularF.getmTitlePopular());
+                    intent.putExtra("overview",popularF.getMoverview());
+                    intent.putExtra("posterPath",popularF.getmPosterPath());
+
+                    context.startActivity(intent);
+                }
+            });
         }
     }
     }

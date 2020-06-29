@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:background="@color/text"
-    android:padding="10dp">
+    android:padding="10dp"
+    >
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llid"
