@@ -14,12 +14,17 @@
     </style>
 
     <style name="movieTitle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">20dp</item>
         <item name="android:textColor">#000</item>
     </style>
 
     <style name="movieSubTitle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">14dp</item>
         <item name="android:textColor">#423E3E</item>
+    </style>
+
+    <style name="movieDes">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#E6E6E6</item>
     </style>
 </resources>

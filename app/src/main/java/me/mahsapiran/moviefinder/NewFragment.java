@@ -88,7 +88,8 @@ public class NewFragment extends Fragment {
                             try {
                             JSONObject data = jsonArray.getJSONObject(i);
                             newMovies.add(new New(data.getString("title"), data.getString(
-                                    "popularity"), data.getString("poster_path")
+                                    "popularity"), data.getString("poster_path",
+                                    data.getString("overview")
                             ));
                             } catch (JSONException e) {
                                 e.printStackTrace();
